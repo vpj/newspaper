@@ -837,7 +837,7 @@ class ContentExtractor(object):
 
             node = parent_nodes[i]
             i += 1
-            if len(node) < 2:
+            if len(node) >= 2:
                 continue
             else:
                 parent_node = self.parser.getParent(node)
