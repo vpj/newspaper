@@ -830,6 +830,24 @@ class ContentExtractor(object):
             cnt += 1
             i += 1
 
+        i = 0
+        while True:
+            if i >= len(parent_nodes):
+                break
+
+            node = parent_nodes[i]
+            i += 1
+            if len(node) < 2:
+                continue
+            else:
+                parent_node = self.parser.getParent(node)
+                upscore = self.get_score(node)
+                self.update_score(parent_node, upscore)
+                self.update_node_count(parent_node, 1)
+
+                if parent_node not in parent_nodes:
+                    parent_nodes.append(parent_node)
+
         top_node_score = 0
         for e in parent_nodes:
             score = self.get_score(e)
